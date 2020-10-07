@@ -142,9 +142,16 @@ namespace WCF_Library_Server
             if (users.FirstOrDefault(u => u.UserName == ToLogin) != null)
             {
                 // отрправка юзеру
-                if(users.FirstOrDefault(u => u.UserName == ToLogin).operationContext.GetCallbackChannel<IWCF_ServiceChatCallBack>() != null)
-                users.FirstOrDefault(u => u.UserName == ToLogin).operationContext.GetCallbackChannel<IWCF_ServiceChatCallBack>()
+                try
+                {
+                    users.FirstOrDefault(u => u.UserName == ToLogin).operationContext.GetCallbackChannel<IWCF_ServiceChatCallBack>()
                     .MessageCallBack($"{DateTime.Now.ToShortTimeString()}| {users.FirstOrDefault(u => u.UserName == FromUserLogin).UserName}: {messageData}");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Получатель в офлайн, но ваше сообщение прийдёт ему когда он подключится к сети");                    
+                }
+                
 
                 // отпечатка у отправившего
                 users.FirstOrDefault(u => u.UserName == FromUserLogin).operationContext.GetCallbackChannel<IWCF_ServiceChatCallBack>()
