@@ -46,6 +46,8 @@ namespace WPF_Client
                 {
                     usersListView.Items.Add(item.Key);
                 }
+
+                currentUserField.Text = userNameTB.Text;
             }
             else
             {
@@ -135,7 +137,7 @@ namespace WPF_Client
             {
                 if (usersListView.SelectedItem != null)
                 {
-                    client.SendMessage(userNameTB.Text, usersListView.SelectedItem.ToString(), messagesListBox.Items[messagesListBox.Items.Count - 1].ToString());
+                    client.SendMessage(userNameTB.Text, usersListView.SelectedItem.ToString(), sendMessagesTexBox.Text.ToString());
 
                     sendMessagesTexBox.Text = "";
                 }

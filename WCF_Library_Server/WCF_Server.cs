@@ -115,32 +115,29 @@ namespace WCF_Library_Server
         }
 
         public void SendMessage(string FromUserLogin, string ToLogin, string messageData)
-        {
-            var user = users.FirstOrDefault(u => u.UserName == ToLogin);
+        {            
             var msg = new Message()
             {
                 FromUser = FromUserLogin,
-                ToUser = user.UserName,
+                ToUser = ToLogin,
                 MessageData = messageData
             };
 
-            CheckMessage(FromUserLogin, msg);
+            CheckMessage(msg);
 
             // обнуляем обьекты
-            msg = null;
-            user = null;
-
-            user = users.FirstOrDefault(u => u.UserName == FromUserLogin);
+            msg = null; 
+            
 
             // меняем местами айдишники - дабы переписка была у обоих пользователей
             msg = new Message()
             {
                 FromUser = ToLogin,
-                ToUser = user.UserName,
+                ToUser = FromUserLogin,
                 MessageData = messageData
             };
 
-            CheckMessage(ToLogin, msg);
+            CheckMessage(msg);
 
             if (users.FirstOrDefault(u => u.UserName == ToLogin) != null)
             {
@@ -159,9 +156,7 @@ namespace WCF_Library_Server
         /// В данном методе делается следующее - если у пользователя есть данный дилог к ниму добавляется новое сообщение,
         /// в противном случае - в его список сообщений добавляется новый обьект класса Message
         /// </summary>
-        /// <param name="userID"></param>
-        /// <param name="msg"></param>
-        private void CheckMessage(string userLogin, Message msg)
+        private void CheckMessage(Message msg)
         {
             //// переменная для проверки на существования
             var message = Messages.FirstOrDefault(m => m.ToUser == msg.ToUser);
