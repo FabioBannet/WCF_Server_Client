@@ -142,6 +142,7 @@ namespace WCF_Library_Server
             if (users.FirstOrDefault(u => u.UserName == ToLogin) != null)
             {
                 // отрправка юзеру
+                if(users.FirstOrDefault(u => u.UserName == ToLogin).operationContext.GetCallbackChannel<IWCF_ServiceChatCallBack>() != null)
                 users.FirstOrDefault(u => u.UserName == ToLogin).operationContext.GetCallbackChannel<IWCF_ServiceChatCallBack>()
                     .MessageCallBack($"{DateTime.Now.ToShortTimeString()}| {users.FirstOrDefault(u => u.UserName == FromUserLogin).UserName}: {messageData}");
 
@@ -168,6 +169,8 @@ namespace WCF_Library_Server
                 using (var db = new DBContext())
                 {
                     db.Messages.Add(msg);
+
+                    db.SaveChanges();
                 }
             }
             else
@@ -175,6 +178,7 @@ namespace WCF_Library_Server
                 using (var db = new DBContext())
                 {
                     db.Messages.FirstOrDefault(m => m.ToUser == msg.ToUser).MessageData += "\n" + DateTime.Now.ToShortTimeString().ToString() + "\t" + msg.MessageData;
+                    db.SaveChanges();
                 }
             }
         }
