@@ -1,0 +1,15 @@
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\WPF_Client.csprojAssemblyReference.cache
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\App.g.cs
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\WPF_Client_MarkupCompile.cache
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\bin\Debug\WPF_Client.exe.config
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\bin\Debug\WPF_Client.exe
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\bin\Debug\WPF_Client.pdb
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\MainWindow.g.cs
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\WPF_Client_MarkupCompile.lref
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\MainWindow.baml
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\WPF_Client.g.resources
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\WPF_Client.Properties.Resources.resources
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\WPF_Client.csproj.GenerateResource.cache
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\WPF_Client.csproj.CoreCompileInputs.cache
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\WPF_Client.exe
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WPF_Client\obj\Debug\WPF_Client.pdb

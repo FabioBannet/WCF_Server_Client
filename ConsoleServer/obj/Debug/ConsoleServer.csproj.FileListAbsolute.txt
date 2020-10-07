@@ -1,0 +1,15 @@
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\ConsoleServer.exe.config
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\ConsoleServer.exe
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\ConsoleServer.pdb
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\WCF_Library_Server.dll
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\EntityFramework.dll
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\WCF_Library_Server.pdb
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\WCF_Library_Server.dll.config
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\EntityFramework.xml
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\obj\Debug\ConsoleServer.csprojAssemblyReference.cache
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\obj\Debug\ConsoleServer.csproj.CoreCompileInputs.cache
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\obj\Debug\ConsoleServer.csproj.CopyComplete
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\obj\Debug\ConsoleServer.exe
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\obj\Debug\ConsoleServer.pdb
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\ConsoleServer\bin\Debug\EntityFramework.SqlServer.xml

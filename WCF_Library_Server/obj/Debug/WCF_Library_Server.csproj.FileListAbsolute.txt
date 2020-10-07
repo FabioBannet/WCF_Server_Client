@@ -1,0 +1,12 @@
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\obj\Debug\WCF_Library_Server.csprojAssemblyReference.cache
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\obj\Debug\WCF_Library_Server.csproj.CoreCompileInputs.cache
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\bin\Debug\WCF_Library_Server.dll.config
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\bin\Debug\WCF_Library_Server.dll
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\bin\Debug\WCF_Library_Server.pdb
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\bin\Debug\EntityFramework.dll
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\bin\Debug\EntityFramework.xml
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\obj\Debug\WCF_Library_Server.csproj.CopyComplete
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\obj\Debug\WCF_Library_Server.dll
+C:\Users\FabioBannet\source\repos\WCF_Server_Client\WCF_Library_Server\obj\Debug\WCF_Library_Server.pdb
