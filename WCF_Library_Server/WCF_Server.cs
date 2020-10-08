@@ -146,17 +146,13 @@ namespace WCF_Library_Server
             if (users.FirstOrDefault(u => u.UserName == ToLogin) != null)
             {
                 // отрправка юзеру
-                try
-                {
-                    users.FirstOrDefault(u => u.UserName == ToLogin).operationContext.GetCallbackChannel<IWCF_ServiceChatCallBack>()
-                    .MessageCallBack($"{DateTime.Now.ToShortTimeString()}| {users.FirstOrDefault(u => u.UserName == FromUserLogin).UserName}: {messageData}");
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Получатель в офлайн, но ваше сообщение прийдёт ему когда он подключится к сети");                    
-                }
                 
-
+                    if (users.FirstOrDefault(u => u.UserName == ToLogin).operationContext != null)
+                    {
+                        users.FirstOrDefault(u => u.UserName == ToLogin).operationContext.GetCallbackChannel<IWCF_ServiceChatCallBack>()
+                    .MessageCallBack($"{DateTime.Now.ToShortTimeString()}| {users.FirstOrDefault(u => u.UserName == FromUserLogin).UserName}: {messageData}");
+                    }                   
+              
                 // отпечатка у отправившего
                 users.FirstOrDefault(u => u.UserName == FromUserLogin).operationContext.GetCallbackChannel<IWCF_ServiceChatCallBack>()
                     .MessageCallBack($"{DateTime.Now.ToShortTimeString()}| Me: {messageData}");
@@ -171,58 +167,59 @@ namespace WCF_Library_Server
         private void CheckMessage(Message msg)
         {
             //// переменная для проверки на существования
-            var message = Messages.FirstOrDefault(m =>
-            (m.ToUser == msg.ToUser && m.FromUser == msg.FromUser)
-            || 
-            (m.ToUser == msg.FromUser && m.FromUser == msg.ToUser));
 
 
-            if (message == null)
-            {
-                //добавляем новое сообщение в лог сообщений
+            using (var db = new DBContext())
+            {            
+                var message = db.Messages.FirstOrDefault(m =>
+                (m.ToUser == msg.ToUser && m.FromUser == msg.FromUser)
+                || 
+                (m.ToUser == msg.FromUser && m.FromUser == msg.ToUser));
 
-                using (var db = new DBContext())
+
+                if (message == null)
                 {
-                    db.Messages.Add(msg);
+                    //добавляем новое сообщение в лог сообщений
 
-                    db.SaveChanges();
+                        db.Messages.Add(msg);
+
+                        db.SaveChanges();                   
                 }
-            }
-            else
-            {
-                using (var db = new DBContext())
-                {
-                    db.Messages.FirstOrDefault(m =>
-                    (m.ToUser == msg.ToUser && m.FromUser == msg.FromUser)
-                    ||      
-                    (m.ToUser == msg.FromUser && m.FromUser == msg.ToUser)).MessageData += "\n" + DateTime.Now.ToShortTimeString().ToString() + "\t" + msg.MessageData;
+                else
+                {                    
+                        db.Messages.FirstOrDefault(m =>
+                        (m.ToUser == msg.ToUser && m.FromUser == msg.FromUser)
+                        ||      
+                        (m.ToUser == msg.FromUser && m.FromUser == msg.ToUser)).MessageData += "\n" + DateTime.Now.ToShortTimeString().ToString() + "\t" + msg.MessageData;
 
 
-                    db.SaveChanges();
+                        db.SaveChanges();                   
                 }
             }
         }
 
         public bool RemoveMessage(string FromUser, string ToUser)
         {
-            Message message = Messages.FirstOrDefault(m =>
-            (m.ToUser == ToUser && m.FromUser == FromUser)
-            ||
-            (m.ToUser == FromUser && m.FromUser == ToUser));
-
-            if(message != null)
-            {
-                Messages.Remove(message);
-
+            
                 using (var db = new DBContext())
                 {
-                    db.Entry(message).State = System.Data.Entity.EntityState.Deleted;
-                    db.SaveChanges();
-                }
-                return true;
-            }
+                    Message message = db.Messages.FirstOrDefault(m =>
+                        (m.ToUser == ToUser && m.FromUser == FromUser)
+                        ||
+                        (m.ToUser == FromUser && m.FromUser == ToUser));
 
-            return false;
+
+                    if (message != null)
+                    {
+                        db.Entry(message).State = System.Data.Entity.EntityState.Deleted;
+                        db.SaveChanges();
+
+                    return true;
+                    }
+
+                return false;
+
+                }               
         }
 
 

@@ -238,7 +238,8 @@
                     Grid.Row="1"
                     Background="#e7e7e7"
                     FontSize="18"
-                    Text="Search" />
+                    Text="Search" 
+                    Visibility="Hidden"/>
                 <!--  Окно пользователей  -->
                 <ListView
                     x:Name="usersListView"

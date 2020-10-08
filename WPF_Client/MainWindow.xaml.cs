@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -115,10 +114,13 @@ namespace WPF_Client
         private void usersListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             messagesListBox.Items.Clear();
-            if (message.Count > 0 && message.ContainsKey((string)usersListView.SelectedItem))
-            {                
-                messagesListBox.Items.Add(message[(string)usersListView.SelectedItem]);
-            }
+            if (usersListView.SelectedItem != null)
+            {
+                if (message.Count > 0 && message.ContainsKey((string)usersListView.SelectedItem))
+                {
+                    messagesListBox.Items.Add(message[(string)usersListView.SelectedItem]);
+                }
+            }            
         }
 
         private void logOutButton_Click(object sender, RoutedEventArgs e)
