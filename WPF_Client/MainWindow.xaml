@@ -19,7 +19,7 @@
 
     <Grid>
         <!--  меню авторизации размер окна 600 на 600  -->
-        <Grid x:Name="loginGrid" >
+        <Grid x:Name="loginGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200" />
                 <RowDefinition Height="100" />
@@ -121,7 +121,7 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
 
-            <!--Иконка по центру экрана-->
+            <!--  Иконка по центру экрана  -->
             <Image
                 Grid.Row="0"
                 Width="75"
@@ -130,7 +130,7 @@
                 VerticalAlignment="Center"
                 Source="icon.PNG" />
 
-            <!--Приветствие по центру экрана-->
+            <!--  Приветствие по центру экрана  -->
             <TextBlock
                 Grid.Row="1"
                 Width="175"
@@ -143,38 +143,40 @@
                 Text="Welcom to Messendger"
                 TextWrapping="Wrap" />
 
-            <!--Поле ввода логина-->
+            <!--  Поле ввода логина  -->
             <TextBox
                 x:Name="loginTB"
                 Grid.Row="2"
                 Margin="75,0"
                 Foreground="DarkGray"
+                IsMouseCapturedChanged="loginTB_IsMouseCapturedChanged"
                 Text="Your login name" />
 
-            <!--Поле ввода пароля-->
+            <!--  Поле ввода пароля  -->
             <TextBox
                 x:Name="passTB"
                 Grid.Row="3"
                 Margin="75,0"
                 Background="FloralWhite"
                 Foreground="DarkGray"
-                Text="Your password" />
+                Text="Your password"
+                IsMouseCapturedChanged="passTB_IsMouseCapturedChanged"/>
 
-            <!--Выбор пола-->
+            <!--  Выбор пола  -->
             <Label
                 Grid.Row="4"
                 Margin="75,0"
                 Background="FloralWhite"
                 Content="Gender:" />
-            <!--М-->
+            <!--  М  -->
             <RadioButton
                 x:Name="mRButton"
                 Grid.Row="4"
                 Margin="200,0"
                 VerticalAlignment="Center"
-                Content="Male" 
-                IsChecked="True"/>
-            <!--Ж-->
+                Content="Male"
+                IsChecked="True" />
+            <!--  Ж  -->
             <RadioButton
                 x:Name="fRButton"
                 Grid.Row="4"
@@ -183,7 +185,7 @@
                 VerticalAlignment="Center"
                 Content="Female" />
 
-            <!--Кнопка зарегестрироваться-->
+            <!--  Кнопка зарегестрироваться  -->
             <Button
                 x:Name="regButton"
                 Grid.Row="6"
@@ -192,7 +194,7 @@
                 Click="regButton_Click"
                 Content="Registrate" />
 
-            <!--Кнопка возврата в меню авторизации-->
+            <!--  Кнопка возврата в меню авторизации  -->
             <Button
                 x:Name="backButton"
                 Grid.Row="0"
@@ -264,36 +266,36 @@
                         <ComboBoxItem
                             x:Name="SetUser"
                             Content=" Set like User"
-                            FontSize="23" 
-                            Selected="SetUser_Click"/>
+                            FontSize="23"
+                            Selected="SetUser_Click" />
 
                         <!--  Set like admin  -->
                         <ComboBoxItem
                             x:Name="SetAdminButton"
                             Content=" Set like admin"
-                            FontSize="23" 
-                            Selected="SetAdminButton_Click"/>                        
+                            FontSize="23"
+                            Selected="SetAdminButton_Click" />
 
                         <!--  Delete message  -->
                         <ComboBoxItem
                             x:Name="DeleteMessageButton"
                             Content=" Delete current message"
-                            FontSize="23" 
-                            Selected="DeleteMessageButton_Click"/>                        
+                            FontSize="23"
+                            Selected="DeleteMessageButton_Click" />
 
                         <!--  Delete user  -->
                         <ComboBoxItem
                             x:Name="DeleteUserButton"
                             Content=" Delete selected user"
-                            FontSize="23" 
-                            Selected="DeleteUserButton_Click"/>                       
+                            FontSize="23"
+                            Selected="DeleteUserButton_Click" />
 
                         <!--  Log out  -->
                         <ComboBoxItem
                             x:Name="logOutButton"
                             Content="Log out"
-                            FontSize="23" 
-                            Selected="logOutButton_Click"/>                       
+                            FontSize="23"
+                            Selected="logOutButton_Click" />
                     </ComboBox>
                 </Grid>
 

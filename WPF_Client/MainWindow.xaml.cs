@@ -3,6 +3,7 @@ using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using WPF_Client.WCF_Service;
 
 namespace WPF_Client
@@ -190,6 +191,18 @@ namespace WPF_Client
         private void SetUser_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void loginTB_IsMouseCapturedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            loginTB.Text = "";
+            loginTB.Foreground = new SolidColorBrush(Colors.Black);
+        }
+
+        private void passTB_IsMouseCapturedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            passTB.Text = "";
+            passTB.Foreground = new SolidColorBrush(Colors.Black);
         }
     }
 }
