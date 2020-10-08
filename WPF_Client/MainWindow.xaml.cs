@@ -167,7 +167,7 @@ namespace WPF_Client
             bool check;
             if(usersListView.SelectedValue != null)
             {
-                check = client.RemoveUser(usersListView.SelectedItem.ToString());
+                check = client.RemoveUser(usersListView.SelectedItem.ToString(), userNameTB.Text);
 
                 switch (check)
                 {

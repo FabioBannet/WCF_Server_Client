@@ -66,17 +66,20 @@ namespace WCF_Library_Server
             return false;
         }
 
-        public bool RemoveUser(string userName)
+        public bool RemoveUser(string userName, string WhoTryDelete)
         {
             var user = users.FirstOrDefault(i => i.UserName == userName);
 
             // удалять юзеров может только супер админ
-            if (user != null && user.Rank.RankID == 3)
+            if (user != null && users.FirstOrDefault(u => u.UserName ==WhoTryDelete).RankRefId == 3 && user.RankRefId != 3)
             {
                 users.Remove(user);
                 using (var db = new DBContext())
                 {
-                    db.Users.Remove(user);
+                    // в общем - то что закоментированно даёт ошибку из-за того, что операцию пытаются сделать из другого контекста
+                    //db.Users.Remove(user);
+                    // данный пример нашё тут https://stackoverflow.com/questions/7791149/the-object-cannot-be-deleted-because-it-was-not-found-in-the-objectstatemanager
+                    db.Entry(user).State = System.Data.Entity.EntityState.Deleted;
                     db.SaveChanges();
 
                     return true;
