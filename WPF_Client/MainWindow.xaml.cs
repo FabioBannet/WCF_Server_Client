@@ -209,15 +209,6 @@ namespace WPF_Client
             }           
         }
 
-        private void SetAdminButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void SetUser_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
 
         private void loginTB_IsMouseCapturedChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -229,6 +220,11 @@ namespace WPF_Client
         {
             passTB.Text = "";
             passTB.Foreground = new SolidColorBrush(Colors.Black);
+        }
+
+        private void userNameTB_IsMouseCapturedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            userNameTB.Text = "";
         }
     }
 }

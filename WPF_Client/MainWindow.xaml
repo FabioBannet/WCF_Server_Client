@@ -30,6 +30,7 @@
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
+            <!--Эмблема по центру экрана-->
             <Image
                 Grid.Row="0"
                 Width="75"
@@ -39,6 +40,7 @@
                 Source="icon.PNG"
                 Stretch="Fill" />
 
+            <!--Приветсвие по центру экрана-->
             <TextBlock
                 Grid.Row="1"
                 Width="180"
@@ -51,15 +53,16 @@
                 Text="Welcom to Messendger"
                 TextWrapping="Wrap" />
 
+            <!--ТекстБокс для ввода логина по центру экрана-->
             <TextBox
                 x:Name="userNameTB"
                 Grid.Row="2"
                 Width="245"
                 Height="23"
                 Background="FloralWhite"
-                Text="user name" />
+                Text="user name" IsMouseCapturedChanged="userNameTB_IsMouseCapturedChanged" />
 
-
+            <!--Для ввода пароля-->
             <PasswordBox
                 x:Name="passwordTB"
                 Grid.Row="3"
@@ -67,6 +70,7 @@
                 Height="23"
                 Background="FloralWhite" />
 
+            <!--Залогинится-->
             <Button
                 x:Name="connectButton"
                 Grid.Row="4"
@@ -76,11 +80,13 @@
                 Click="connectButton_Click"
                 Content="Continue" />
 
+            <!--Зачем-то я его создавал, но не помню для чего-->
             <TextBlock
                 Grid.Row="5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center" />
 
+            <!--Кнопка перехода в меню регистрации-->
             <Button
                 x:Name="toRegistrateWindowButton"
                 Grid.Row="6"
@@ -94,6 +100,7 @@
                 Content="Registrate?"
                 Foreground="Gray" />
 
+            <!--Кнопка которую я так и не реализовал - для восстановления пароля-->
             <Button
                 Grid.Row="6"
                 Width="100"
@@ -103,7 +110,8 @@
                 Background="FloralWhite"
                 BorderBrush="FloralWhite"
                 Content="Fogoten Password ?"
-                Foreground="Gray" />
+                Foreground="Gray" 
+                Visibility="Hidden"/>
 
         </Grid>
 
@@ -260,42 +268,28 @@
                         Text="Current Name" />
 
                     <!--  Самая правая верхняя менюшка  -->
-                    <ComboBox Grid.ColumnSpan="2" Margin="175,0,0,0">
-
-                        <!--  Set like user  -->
-                        <ComboBoxItem
-                            x:Name="SetUser"
-                            Content=" Set like User"
-                            FontSize="23"
-                            Selected="SetUser_Click" />
-
-                        <!--  Set like admin  -->
-                        <ComboBoxItem
-                            x:Name="SetAdminButton"
-                            Content=" Set like admin"
-                            FontSize="23"
-                            Selected="SetAdminButton_Click" />
+                    <ComboBox Grid.ColumnSpan="2" Margin="175,0,0,0">                       
 
                         <!--  Delete message  -->
-                        <ComboBoxItem
+                        <Button
                             x:Name="DeleteMessageButton"
                             Content=" Delete current message"
                             FontSize="23"
-                            Selected="DeleteMessageButton_Click" />
+                            Click="DeleteMessageButton_Click" />
 
                         <!--  Delete user  -->
-                        <ComboBoxItem
+                        <Button
                             x:Name="DeleteUserButton"
                             Content=" Delete selected user"
                             FontSize="23"
-                            Selected="DeleteUserButton_Click" />
+                            Click="DeleteUserButton_Click" />
 
                         <!--  Log out  -->
-                        <ComboBoxItem
+                        <Button
                             x:Name="logOutButton"
                             Content="Log out"
                             FontSize="23"
-                            Selected="logOutButton_Click" />
+                            Click="logOutButton_Click" />
                     </ComboBox>
                 </Grid>
 
