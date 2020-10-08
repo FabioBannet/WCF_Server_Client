@@ -10,6 +10,9 @@ namespace WCF_Library_Server
         [OperationContract]
         bool RemoveUser(string userName, string WhoTryDelete);
 
+        [OperationContract]
+        bool RemoveMessage(string FromUser, string ToUser);
+
         [OperationContract(IsOneWay = true)]
         void SendMessage(string FromUserLogin, string ToLogin, string messageData);
 

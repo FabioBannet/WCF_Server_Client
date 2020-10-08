@@ -172,7 +172,11 @@ namespace WPF_Client
                 switch (check)
                 {
                     case true:
-                        MessageBox.Show("Пользователь успешно удалён");
+                        {
+                            usersListView.Items.Remove(usersListView.SelectedItem);
+                            MessageBox.Show("Пользователь успешно удалён");
+                        }
+                        
                         break;
                     case false:
                         MessageBox.Show("Пользователь успешно удалён");

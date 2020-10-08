@@ -80,10 +80,10 @@ namespace WCF_Library_Server
                     //db.Users.Remove(user);
                     // данный пример нашё тут https://stackoverflow.com/questions/7791149/the-object-cannot-be-deleted-because-it-was-not-found-in-the-objectstatemanager
                     db.Entry(user).State = System.Data.Entity.EntityState.Deleted;
-                    db.SaveChanges();
-
-                    return true;
+                    db.SaveChanges();                    
                 }
+
+                return true;
             }
             return false;
 
@@ -204,7 +204,29 @@ namespace WCF_Library_Server
                 }
             }
         }
-       
+
+        public bool RemoveMessage(string FromUser, string ToUser)
+        {
+            Message message = Messages.FirstOrDefault(m =>
+            (m.ToUser == ToUser && m.FromUser == FromUser)
+            ||
+            (m.ToUser == FromUser && m.FromUser == ToUser));
+
+            if(message != null)
+            {
+                Messages.Remove(message);
+
+                using (var db = new DBContext())
+                {
+                    db.Entry(message).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                }
+                return true;
+            }
+
+            return false;
+        }
+
 
         // базовый конструктор
         public WCF_Service()
