@@ -21,6 +21,12 @@ namespace WPF_Client.WCF_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCF_Service/RemoveUser", ReplyAction="http://tempuri.org/IWCF_Service/RemoveUserResponse")]
         System.Threading.Tasks.Task<bool> RemoveUserAsync(string userName, string WhoTryDelete);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCF_Service/RemoveMessage", ReplyAction="http://tempuri.org/IWCF_Service/RemoveMessageResponse")]
+        bool RemoveMessage(string FromUser, string ToUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCF_Service/RemoveMessage", ReplyAction="http://tempuri.org/IWCF_Service/RemoveMessageResponse")]
+        System.Threading.Tasks.Task<bool> RemoveMessageAsync(string FromUser, string ToUser);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWCF_Service/SendMessage")]
         void SendMessage(string FromUserLogin, string ToLogin, string messageData);
         
@@ -134,6 +140,14 @@ namespace WPF_Client.WCF_Service {
         
         public System.Threading.Tasks.Task<bool> RemoveUserAsync(string userName, string WhoTryDelete) {
             return base.Channel.RemoveUserAsync(userName, WhoTryDelete);
+        }
+        
+        public bool RemoveMessage(string FromUser, string ToUser) {
+            return base.Channel.RemoveMessage(FromUser, ToUser);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemoveMessageAsync(string FromUser, string ToUser) {
+            return base.Channel.RemoveMessageAsync(FromUser, ToUser);
         }
         
         public void SendMessage(string FromUserLogin, string ToLogin, string messageData) {

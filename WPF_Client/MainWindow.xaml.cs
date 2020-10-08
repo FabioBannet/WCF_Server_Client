@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,6 +17,7 @@ namespace WPF_Client
         WCF_ServiceClient client;
         Dictionary<string, string> message;
         Dictionary<string, bool> users;
+        
         bool check = false;
 
         public MainWindow()
@@ -30,6 +32,7 @@ namespace WPF_Client
         /// </summary>
         private void connectButton_Click(object sender, RoutedEventArgs e)
         {
+            
             users = new Dictionary<string, bool>();
             message = new Dictionary<string, string>();
 
@@ -111,9 +114,9 @@ namespace WPF_Client
 
         private void usersListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            messagesListBox.Items.Clear();
             if (message.Count > 0 && message.ContainsKey((string)usersListView.SelectedItem))
-            {
-                messagesListBox.Items.Clear();
+            {                
                 messagesListBox.Items.Add(message[(string)usersListView.SelectedItem]);
             }
         }
@@ -159,7 +162,26 @@ namespace WPF_Client
 
         private void DeleteMessageButton_Click(object sender, RoutedEventArgs e)
         {
+            bool check;
+            if (usersListView.SelectedValue != null)
+            {
+                check = client.RemoveMessage(usersListView.SelectedItem.ToString(), userNameTB.Text);
 
+                switch (check)
+                {
+                    case true:
+                        {
+                            messagesListBox.Items.Clear();                           
+                        }
+
+                        break;
+                    case false:
+                        MessageBox.Show("Сообщения удалить не удалось");
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
@@ -179,7 +201,7 @@ namespace WPF_Client
                         
                         break;
                     case false:
-                        MessageBox.Show("Пользователь успешно удалён");
+                        MessageBox.Show("Пользователь не был удалён.");
                         break;
                     default:
                         break;

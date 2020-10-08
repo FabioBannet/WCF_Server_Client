@@ -28,6 +28,24 @@ namespace WCF_Library_Server
 
             if (user != null && MyHash.Authefication(user.HashedPassword, password))
             {
+                using (var db = new DBContext())
+                {
+                    Messages = new List<Message>();
+                    Messages.AddRange(db.Messages.Where(m => m.FromUser == login || m.ToUser == login));
+
+                    foreach (var item in Messages)
+                    {
+                        if (item.ToUser != user.UserName)
+                        {
+                            messages.Add(item.ToUser, item.MessageData);
+                        }
+                        else
+                        {
+                            messages.Add(item.FromUser, item.MessageData);
+                        }
+
+                    }
+                }               
 
                 user.operationContext = OperationContext.Current;
 
@@ -37,28 +55,8 @@ namespace WCF_Library_Server
                     //что бы не добавлять себя
                     if(login != item.UserName)
                         usersInDB.Add(item.UserName, item.Gender);
-                }
-
-                //TODO передача пользователю сообщения
-                if (Messages.FirstOrDefault(m => m.ToUser == user.UserName) != null)
-                {
-                    IEnumerable<Message> messagesFromDB = Messages.Where(m => m.ToUser == user.UserName || m.FromUser == user.UserName);
-
-                    // если есть диалоги - отгружаем по ключу имя пользователя/сообщение 
-                    foreach (var item in messagesFromDB)
-                    { 
-                        if(item.ToUser != user.UserName)
-                        {
-                            messages.Add(item.ToUser, item.MessageData);
-                        }
-                        else
-                        {
-                            messages.Add(item.FromUser, item.MessageData);
-                        }
-                        
-                    }
-                   
-                }
+                }               
+                
 
                 return true;
 
@@ -155,7 +153,7 @@ namespace WCF_Library_Server
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Получатель в офлайн, но ваше сообщение прийдёт ему когда он подключится к сети");                    
+                    Console.WriteLine("Получатель в офлайн, но ваше сообщение прийдёт ему когда он подключится к сети");                    
                 }
                 
 
@@ -233,11 +231,11 @@ namespace WCF_Library_Server
         {
             using (var userDB = new DBContext())
             {
-                users = new List<User>();
-                Messages = new List<Message>();
+                users = new List<User>();                
 
                 users.AddRange(userDB.Users);
-                Messages.AddRange(userDB.Messages);
+
+               
 
                 //строки для инициализации DB
                 //List<UserRank> ranks = new List<UserRank>()
