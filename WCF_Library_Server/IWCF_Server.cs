@@ -8,7 +8,7 @@ namespace WCF_Library_Server
     {
 
         [OperationContract]
-        void RemoveUser(string userName);
+        bool RemoveUser(string userName);
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(string FromUserLogin, string ToLogin, string messageData);

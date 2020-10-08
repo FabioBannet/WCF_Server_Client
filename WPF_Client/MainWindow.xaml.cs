@@ -128,6 +128,7 @@ namespace WPF_Client
 
             users.Clear();
             message.Clear();
+            usersListView.Items.Clear();
 
             loginGrid.Visibility = Visibility.Visible;
         }
@@ -162,7 +163,23 @@ namespace WPF_Client
 
         private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
         {
+            bool check;
+            if(usersListView.SelectedValue != null)
+            {
+                check = client.RemoveUser(usersListView.SelectedItem.ToString());
 
+                switch (check)
+                {
+                    case true:
+                        MessageBox.Show("Пользователь успешно удалён");
+                        break;
+                    case false:
+                        MessageBox.Show("Пользователь успешно удалён");
+                        break;
+                    default:
+                        break;
+                }
+            }           
         }
 
         private void SetAdminButton_Click(object sender, RoutedEventArgs e)

@@ -16,10 +16,10 @@ namespace WPF_Client.WCF_Service {
     public interface IWCF_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCF_Service/RemoveUser", ReplyAction="http://tempuri.org/IWCF_Service/RemoveUserResponse")]
-        void RemoveUser(string userName);
+        bool RemoveUser(string userName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCF_Service/RemoveUser", ReplyAction="http://tempuri.org/IWCF_Service/RemoveUserResponse")]
-        System.Threading.Tasks.Task RemoveUserAsync(string userName);
+        System.Threading.Tasks.Task<bool> RemoveUserAsync(string userName);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IWCF_Service/SendMessage")]
         void SendMessage(string FromUserLogin, string ToLogin, string messageData);
@@ -128,11 +128,11 @@ namespace WPF_Client.WCF_Service {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void RemoveUser(string userName) {
-            base.Channel.RemoveUser(userName);
+        public bool RemoveUser(string userName) {
+            return base.Channel.RemoveUser(userName);
         }
         
-        public System.Threading.Tasks.Task RemoveUserAsync(string userName) {
+        public System.Threading.Tasks.Task<bool> RemoveUserAsync(string userName) {
             return base.Channel.RemoveUserAsync(userName);
         }
         

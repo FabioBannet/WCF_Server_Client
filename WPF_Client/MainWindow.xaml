@@ -121,6 +121,7 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
 
+            <!--Иконка по центру экрана-->
             <Image
                 Grid.Row="0"
                 Width="75"
@@ -129,6 +130,7 @@
                 VerticalAlignment="Center"
                 Source="icon.PNG" />
 
+            <!--Приветствие по центру экрана-->
             <TextBlock
                 Grid.Row="1"
                 Width="175"
@@ -141,6 +143,7 @@
                 Text="Welcom to Messendger"
                 TextWrapping="Wrap" />
 
+            <!--Поле ввода логина-->
             <TextBox
                 x:Name="loginTB"
                 Grid.Row="2"
@@ -148,6 +151,7 @@
                 Foreground="DarkGray"
                 Text="Your login name" />
 
+            <!--Поле ввода пароля-->
             <TextBox
                 x:Name="passTB"
                 Grid.Row="3"
@@ -156,19 +160,21 @@
                 Foreground="DarkGray"
                 Text="Your password" />
 
+            <!--Выбор пола-->
             <Label
                 Grid.Row="4"
                 Margin="75,0"
                 Background="FloralWhite"
                 Content="Gender:" />
-
+            <!--М-->
             <RadioButton
                 x:Name="mRButton"
                 Grid.Row="4"
                 Margin="200,0"
                 VerticalAlignment="Center"
-                Content="Male" />
-
+                Content="Male" 
+                IsChecked="True"/>
+            <!--Ж-->
             <RadioButton
                 x:Name="fRButton"
                 Grid.Row="4"
@@ -176,6 +182,8 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Content="Female" />
+
+            <!--Кнопка зарегестрироваться-->
             <Button
                 x:Name="regButton"
                 Grid.Row="6"
@@ -184,6 +192,7 @@
                 Click="regButton_Click"
                 Content="Registrate" />
 
+            <!--Кнопка возврата в меню авторизации-->
             <Button
                 x:Name="backButton"
                 Grid.Row="0"

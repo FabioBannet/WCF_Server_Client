@@ -66,7 +66,7 @@ namespace WCF_Library_Server
             return false;
         }
 
-        public void RemoveUser(string userName)
+        public bool RemoveUser(string userName)
         {
             var user = users.FirstOrDefault(i => i.UserName == userName);
 
@@ -78,8 +78,11 @@ namespace WCF_Library_Server
                 {
                     db.Users.Remove(user);
                     db.SaveChanges();
+
+                    return true;
                 }
             }
+            return false;
 
         }
 
