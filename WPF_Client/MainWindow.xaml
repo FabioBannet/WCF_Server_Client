@@ -19,7 +19,7 @@
 
     <Grid>
         <!--  меню авторизации размер окна 600 на 600  -->
-        <Grid x:Name="loginGrid">
+        <Grid x:Name="loginGrid" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="200" />
                 <RowDefinition Height="100" />
@@ -243,19 +243,48 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Text="Current Name" x:Name="currentUserField" />
+                    <TextBlock
+                        x:Name="currentUserField"
+                        Grid.Column="0"
+                        Text="Current Name" />
 
                     <!--  Самая правая верхняя менюшка  -->
-                    <ComboBox Grid.Column="1">
-                        <ComboBoxItem Content="Some stuff" />
-                        <ComboBoxItem Content="Some stuff" />
-                        <ComboBoxItem Content="Some stuff" />
-                        <ComboBoxItem>
-                            <Button
-                                x:Name="logOutButton"
-                                Click="logOutButton_Click"
-                                Content="Log out" />
-                        </ComboBoxItem>
+                    <ComboBox Grid.ColumnSpan="2" Margin="175,0,0,0">
+
+                        <!--  Set like user  -->
+                        <ComboBoxItem
+                            x:Name="SetUser"
+                            Content=" Set like User"
+                            FontSize="23" 
+                            Selected="SetUser_Click"/>
+
+                        <!--  Set like admin  -->
+                        <ComboBoxItem
+                            x:Name="SetAdminButton"
+                            Content=" Set like admin"
+                            FontSize="23" 
+                            Selected="SetAdminButton_Click"/>                        
+
+                        <!--  Delete message  -->
+                        <ComboBoxItem
+                            x:Name="DeleteMessageButton"
+                            Content=" Delete current message"
+                            FontSize="23" 
+                            Selected="DeleteMessageButton_Click"/>                        
+
+                        <!--  Delete user  -->
+                        <ComboBoxItem
+                            x:Name="DeleteUserButton"
+                            Content=" Delete selected user"
+                            FontSize="23" 
+                            Selected="DeleteUserButton_Click"/>                       
+
+                        <!--  Log out  -->
+                        <ComboBoxItem
+                            x:Name="logOutButton"
+                            Content="Log out"
+                            FontSize="23" 
+                            Selected="logOutButton_Click"/>                       
                     </ComboBox>
                 </Grid>
 

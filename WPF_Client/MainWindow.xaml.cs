@@ -35,7 +35,7 @@ namespace WPF_Client
             check = client.Authorisation(userNameTB.Text, passwordTB.Password, ref message, ref users);
 
             if (check)
-            {
+            {                
                 loginGrid.Visibility = Visibility.Hidden;
                 // меняем размер окна и включаем третью оболочку.
                 Width = 830;
@@ -110,8 +110,9 @@ namespace WPF_Client
 
         private void usersListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (message.Count > 0)
+            if (message.Count > 0 && message.ContainsKey((string)usersListView.SelectedItem))
             {
+                messagesListBox.Items.Clear();
                 messagesListBox.Items.Add(message[(string)usersListView.SelectedItem]);
             }
         }
@@ -152,6 +153,26 @@ namespace WPF_Client
         public void MessageCallBack(string answer)
         {
             messagesListBox.Items.Add(answer);
+        }
+
+        private void DeleteMessageButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetAdminButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetUser_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

@@ -42,9 +42,22 @@ namespace WCF_Library_Server
                 //TODO передача пользователю сообщения
                 if (Messages.FirstOrDefault(m => m.ToUser == user.UserName) != null)
                 {
-                    var messagesFromDB = Messages.FirstOrDefault(m => m.ToUser == user.UserName);
+                    IEnumerable<Message> messagesFromDB = Messages.Where(m => m.ToUser == user.UserName || m.FromUser == user.UserName);
+
                     // если есть диалоги - отгружаем по ключу имя пользователя/сообщение 
-                    messages.Add(messagesFromDB.FromUser, messagesFromDB.MessageData);
+                    foreach (var item in messagesFromDB)
+                    { 
+                        if(item.ToUser != user.UserName)
+                        {
+                            messages.Add(item.ToUser, item.MessageData);
+                        }
+                        else
+                        {
+                            messages.Add(item.FromUser, item.MessageData);
+                        }
+                        
+                    }
+                   
                 }
 
                 return true;
@@ -125,19 +138,6 @@ namespace WCF_Library_Server
 
             CheckMessage(msg);
 
-            // обнуляем обьекты
-            msg = null; 
-            
-
-            // меняем местами айдишники - дабы переписка была у обоих пользователей
-            msg = new Message()
-            {
-                FromUser = ToLogin,
-                ToUser = FromUserLogin,
-                MessageData = messageData
-            };
-
-            CheckMessage(msg);
 
             if (users.FirstOrDefault(u => u.UserName == ToLogin) != null)
             {
@@ -167,7 +167,11 @@ namespace WCF_Library_Server
         private void CheckMessage(Message msg)
         {
             //// переменная для проверки на существования
-            var message = Messages.FirstOrDefault(m => m.ToUser == msg.ToUser);
+            var message = Messages.FirstOrDefault(m =>
+            (m.ToUser == msg.ToUser && m.FromUser == msg.FromUser)
+            || 
+            (m.ToUser == msg.FromUser && m.FromUser == msg.ToUser));
+
 
             if (message == null)
             {
@@ -184,11 +188,17 @@ namespace WCF_Library_Server
             {
                 using (var db = new DBContext())
                 {
-                    db.Messages.FirstOrDefault(m => m.ToUser == msg.ToUser).MessageData += "\n" + DateTime.Now.ToShortTimeString().ToString() + "\t" + msg.MessageData;
+                    db.Messages.FirstOrDefault(m =>
+                    (m.ToUser == msg.ToUser && m.FromUser == msg.FromUser)
+                    ||      
+                    (m.ToUser == msg.FromUser && m.FromUser == msg.ToUser)).MessageData += "\n" + DateTime.Now.ToShortTimeString().ToString() + "\t" + msg.MessageData;
+
+
                     db.SaveChanges();
                 }
             }
         }
+       
 
         // базовый конструктор
         public WCF_Service()
